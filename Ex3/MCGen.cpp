@@ -112,7 +112,7 @@ int main()
     //打开文件
     ofstream outfile("./MC.txt");
 
-for(int z=0;z<16000;z++){
+for(int z=0;z<8000;z++){
     string ss="";
 
     for(int j=0;j<4;j++){

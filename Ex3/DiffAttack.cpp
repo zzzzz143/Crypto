@@ -3,21 +3,6 @@
 #include<string>
 #include<vector>
 using namespace std;
-int charpointerToint(char* c,int n){
-    
-    int t=0;
-    for(int i=0;i<n;i++){
-        if(i!=0)t*=2;
-        if(c[i]=='0')
-        {
-            t+=0;
-        }
-        else{
-            t+=1;
-        }
-    }
-    return t;
-}
 int char2int(char c){
     if(c>='0'&&c<='9')
         return c-'0';
@@ -38,27 +23,12 @@ int HexStr2int(string ss){//要保证这个十六进制字符串是两位
     sum+=char2int(b);
     return sum;
 }
-string int2HexStr(int n){//把int转换成两位的十六进制字符串
-    string s="";
-    if(n==0){
-        s="00";
-        return s;
-    }
-    while(n>0){
-        int t=n%16;
-        s=int2char(t)+s;
-        n/=16;
-    }
-    if(s.length()==1){
-        s="0"+s;
-    }
-    return s;
-}
 
 int main()
 {
     //输出文件
-    ofstream fout("./222.txt");
+    ofstream fout("./DiffTable.txt");
+
     vector<string> S = {
         "d6","90","e9","fe","cc","e1","3d","b7","16","b6","14","c2","28","fb","2c","05",
                     "2b","67","9a","76","2a","be","04","c3","aa","44","13","26","49","86","06","99",
@@ -100,33 +70,15 @@ int main()
           diff[i][y_star^y]++;
         }
     }
-    // vector<vector<string>> diff_Str(256, vector<string>(256));
-    // //初始化
-    // for(int i=0;i<256;i++)
-    // {
-    //     for(int j=0;j<256;j++)
-    //     {
-    //         diff_Str[i][j]="";
-    //     }
-    // }
-    // //转换成字符形式
-    // for(int i=0;i<256;i++)
-    // {
-    //     for(int j=0;j<256;j++)
-    //     {
-    //         diff_Str[i][j]+=int2HexStr(diff[i][j]);
-    //     }
-    // }
     //输出差分分布表
     for(int i=0;i<256;i++)
     {
         for(int j=0;j<256;j++)
         {
-            //cout<<diff_Str[i][j]<<" ";
-            fout << int2HexStr(diff[i][j]) << " ";
+            fout << diff[i][j] << " ";
         }
-        //cout<<endl;
         fout<<endl;
     }
     fout.close();
+
 }

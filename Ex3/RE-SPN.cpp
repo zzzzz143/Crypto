@@ -100,7 +100,8 @@ int main()
     infile.open("./MC.txt");
     
     int recorder=0;
-    while((recorder++)<16000){
+/////这里是计算K5相关的内容
+    while((recorder++)<8000){
         
         string Message,Ciphertext;
         getline(infile,Message);
@@ -123,8 +124,6 @@ int main()
             //同样转换为对应的int
             int Ciphertext1int=charpointerToint(Ciphertext1,4);
             int Ciphertext2int=charpointerToint(Ciphertext2,4);
-
-
         //接下来进行异或，异或分别得到v24和v44
             int temp1=Key1int^Ciphertext1int;
             int temp2=Key2int^Ciphertext2int;
